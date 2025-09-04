@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://ie10pcjxs68y"]
+
+[ext_resource type="PackedScene" uid="uid://c6gyo1jhotsr6" path="res://cube.tscn" id="1_evmdo"]
+[ext_resource type="PackedScene" uid="uid://c6uigoqrmrx1u" path="res://block.tscn" id="2_7fk1q"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Cube" parent="." instance=ExtResource("1_evmdo")]
+
+[node name="Block" parent="." instance=ExtResource("2_7fk1q")]
+position = Vector2(101, 598)
+
+[node name="Block2" parent="." instance=ExtResource("2_7fk1q")]
+position = Vector2(147, 598)
+
+[node name="Block3" parent="." instance=ExtResource("2_7fk1q")]
+position = Vector2(193, 599)
+
+[node name="Block4" parent="." instance=ExtResource("2_7fk1q")]
+position = Vector2(239, 599)
+
+[node name="Block5" parent="." instance=ExtResource("2_7fk1q")]
+position = Vector2(276, 600)
+
+[node name="Block6" parent="." instance=ExtResource("2_7fk1q")]
+position = Vector2(322, 600)
+
+[node name="Block7" parent="." instance=ExtResource("2_7fk1q")]
+position = Vector2(350, 601)
+
+[node name="Block8" parent="." instance=ExtResource("2_7fk1q")]
+position = Vector2(396, 601)
+
+[node name="Block9" parent="." instance=ExtResource("2_7fk1q")]
+position = Vector2(441, 601)
+
+[node name="Block10" parent="." instance=ExtResource("2_7fk1q")]
+position = Vector2(487, 601)

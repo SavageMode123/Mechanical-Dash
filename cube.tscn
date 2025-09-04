@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://c6gyo1jhotsr6"]
+
+[ext_resource type="Script" path="res://Cube.gd" id="1_j3pn6"]
+[ext_resource type="Texture2D" uid="uid://ct8krn5wbdrqy" path="res://Images/Cube.png" id="2_w0grk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ffqx"]
+size = Vector2(480, 480)
+
+[node name="Cube" type="CharacterBody2D"]
+position = Vector2(102, 515)
+scale = Vector2(0.1, 0.1)
+script = ExtResource("1_j3pn6")
+
+[node name="Icon" type="Sprite2D" parent="."]
+texture = ExtResource("2_w0grk")
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(-0.000610352, 0)
+shape = SubResource("RectangleShape2D_2ffqx")
+
+[node name="Camera2D" type="Camera2D" parent="."]
