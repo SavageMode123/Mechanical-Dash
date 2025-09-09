@@ -62,6 +62,10 @@ func _physics_process(delta: float) -> void:
 		icon.rotation_degrees = lerp(icon.rotation_degrees, round(icon.rotation_degrees / 90) * 90, 0.2)
 		notOnFloorSince = 0.0
 
+	if Input.is_action_just_pressed("Debug"):
+		position.x = 100
+		position.y = 500
+
 	move_and_slide()
 
 # Cube kill collision
