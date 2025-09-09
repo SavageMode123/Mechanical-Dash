@@ -27,6 +27,7 @@ position_smoothing_speed = 10.0
 
 [node name="Hitbox" type="CollisionShape2D" parent="BlockCollision"]
 position = Vector2(-0.000610352, 0)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_2ffqx")
 
 [node name="InstantCollision" type="Area2D" parent="."]
@@ -35,10 +36,12 @@ priority = 10.0
 
 [node name="Hitbox" type="CollisionShape2D" parent="InstantCollision"]
 position = Vector2(-0.000610352, 0)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_quu2i")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(-0.000610352, 0)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_usvvn")
 
 [connection signal="body_entered" from="BlockCollision" to="." method="_on_block_collision_body_entered"]
