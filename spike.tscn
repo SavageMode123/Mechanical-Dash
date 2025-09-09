@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://tdk6p7xgwws5"]
+
+[sub_resource type="Gradient" id="Gradient_tdqsn"]
+colors = PackedColorArray(0.370291, 0.111421, 0.167779, 1, 0.169506, 0.0393034, 0.0655501, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6aydx"]
+gradient = SubResource("Gradient_tdqsn")
+fill_from = Vector2(0.5, 1)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vjjya"]
+size = Vector2(100, 270)
+
+[node name="Spike" type="StaticBody2D" groups=["Spike"]]
+scale = Vector2(0.1, 0.1)
+
+[node name="Icon" type="Polygon2D" parent="."]
+texture = SubResource("GradientTexture2D_6aydx")
+polygon = PackedVector2Array(-240, 240, 2.08165e-12, -240, 240, 240)
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(0, 40)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_vjjya")
