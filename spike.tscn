@@ -9,10 +9,11 @@ fill_from = Vector2(0.5, 1)
 fill_to = Vector2(0.5, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vjjya"]
-size = Vector2(100, 270)
+size = Vector2(60, 200)
 
 [node name="Spike" type="StaticBody2D" groups=["Spike"]]
 scale = Vector2(0.1, 0.1)
+collision_layer = 2
 
 [node name="Icon" type="Polygon2D" parent="."]
 texture = SubResource("GradientTexture2D_6aydx")
