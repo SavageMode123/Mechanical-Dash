@@ -7,10 +7,12 @@ const JUMP_VELOCITY: float = 480.00 * 2
 var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity") * 4
 
 # States
+var gameStarted: bool = false
 var inJump: bool = false
 var notOnFloorSince: float = 0.0
 
 # Nodes
+@export var Events: Node
 @onready var icon: Sprite2D = $"Icon"
 
 # Reset player
@@ -26,15 +28,20 @@ func verifyJumpRequirements():
 	closeToFloorQuery.exclude = [self]
 
 	var closeToFloor: bool = true if spaceState.intersect_ray(closeToFloorQuery) else false
-
 	return !inJump and (is_on_floor() or notOnFloorSince < 0.2 or closeToFloor == true)
 
 func _ready() -> void:
 	velocity.x = SPEED
 	velocity.y = 0
+	Events.startGame.connect(startGame)
 
+func startGame() -> void:
+		gameStarted = true
 
 func _physics_process(delta: float) -> void:
+	if not gameStarted:
+		return
+
 	# Add gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta

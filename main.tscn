@@ -1,13 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://ie10pcjxs68y"]
+[gd_scene load_steps=6 format=3 uid="uid://ie10pcjxs68y"]
 
 [ext_resource type="PackedScene" uid="uid://c6gyo1jhotsr6" path="res://cube.tscn" id="1_evmdo"]
 [ext_resource type="PackedScene" uid="uid://c6uigoqrmrx1u" path="res://block.tscn" id="2_7fk1q"]
 [ext_resource type="PackedScene" path="res://spike.tscn" id="3_n3fh7"]
+[ext_resource type="PackedScene" uid="uid://c0neqprbf502r" path="res://gui.tscn" id="4_5fmtl"]
+[ext_resource type="Script" path="res://Events.gd" id="5_247dg"]
 
 [node name="Main" type="Node2D"]
 
-[node name="Cube" parent="." instance=ExtResource("1_evmdo")]
+[node name="Cube" parent="." node_paths=PackedStringArray("Events") instance=ExtResource("1_evmdo")]
 position = Vector2(100, 500)
+Events = NodePath("../Events")
+
+[node name="Camera2D" type="Camera2D" parent="Cube"]
+
+[node name="GUI" parent="Cube/Camera2D" node_paths=PackedStringArray("Events") instance=ExtResource("4_5fmtl")]
+offset_left = 81.0
+offset_top = 54.0
+offset_right = 81.0
+offset_bottom = 54.0
+Events = NodePath("../../../Events")
 
 [node name="Block" parent="." instance=ExtResource("2_7fk1q")]
 position = Vector2(96, 576)
@@ -131,3 +143,6 @@ position = Vector2(1488, 576)
 
 [node name="Spike" parent="." instance=ExtResource("3_n3fh7")]
 position = Vector2(240, 528)
+
+[node name="Events" type="Node" parent="."]
+script = ExtResource("5_247dg")

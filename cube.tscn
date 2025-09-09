@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://c6gyo1jhotsr6"]
+[gd_scene load_steps=6 format=3 uid="uid://c6gyo1jhotsr6"]
 
 [ext_resource type="Script" path="res://Cube.gd" id="1_j3pn6"]
 [ext_resource type="Texture2D" uid="uid://ct8krn5wbdrqy" path="res://Images/Cube.png" id="2_w0grk"]
-[ext_resource type="PackedScene" uid="uid://c0neqprbf502r" path="res://gui.tscn" id="3_xxokt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2ffqx"]
 size = Vector2(240, 240)
@@ -20,14 +19,6 @@ script = ExtResource("1_j3pn6")
 
 [node name="Icon" type="Sprite2D" parent="."]
 texture = ExtResource("2_w0grk")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-
-[node name="GUI" parent="Camera2D" instance=ExtResource("3_xxokt")]
-offset_left = 81.0
-offset_top = 54.0
-offset_right = 81.0
-offset_bottom = 54.0
 
 [node name="BlockCollision" type="Area2D" parent="."]
 

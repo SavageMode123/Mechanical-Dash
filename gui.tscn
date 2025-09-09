@@ -1,10 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://c0neqprbf502r"]
+[gd_scene load_steps=3 format=3 uid="uid://c0neqprbf502r"]
 
 [ext_resource type="Texture2D" uid="uid://btukywew2btnt" path="res://Images/PlayButton.png" id="1_o40cf"]
+[ext_resource type="Script" path="res://GUI.gd" id="1_pveag"]
 
 [node name="GUI" type="Control"]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pveag")
 
 [node name="Menu" type="Control" parent="."]
 anchors_preset = 0
@@ -12,17 +20,17 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Menu"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
 
-[node name="PlayButton" type="Sprite2D" parent="Menu/HBoxContainer"]
-scale = Vector2(4, 4)
-texture = ExtResource("1_o40cf")
-
-[node name="Button" type="Button" parent="Menu/HBoxContainer/PlayButton"]
-offset_left = -1092.0
-offset_top = -700.0
-offset_right = -1084.0
-offset_bottom = -660.0
+[node name="PlayButton" type="Button" parent="Menu/HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("1_o40cf")
 icon_alignment = 1
+
+[connection signal="pressed" from="Menu/HBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
