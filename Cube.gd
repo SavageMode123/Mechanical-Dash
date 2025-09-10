@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 const SPEED: float = 432.00
 const JUMP_VELOCITY: float = 480.00 * 1.8
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity") * 3.3
 
@@ -29,7 +30,6 @@ func reset():
 	notOnFloorSince = 1.0
 	inJump = false
 
-
 func verifyJumpRequirements():
 	var spaceState = get_world_2d().direct_space_state
 
@@ -48,7 +48,6 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity.y += gravity * delta
 
-	
 	# Handle Jump
 	if Input.is_action_pressed("Jump") and verifyJumpRequirements():
 		velocity.y = -JUMP_VELOCITY
@@ -83,7 +82,6 @@ func _physics_process(delta: float) -> void:
 func _on_block_collision_body_entered(body : Node2D) -> void:
 	if body.is_in_group("Block"):
 		reset()
-
 
 func _on_instant_collision_body_entered(body : Node2D) -> void:
 	# Instant Kill collision
