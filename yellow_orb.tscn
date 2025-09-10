@@ -14,5 +14,4 @@ scale = Vector2(1.43, 1.43)
 texture = ExtResource("1_em6ns")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_mn5ve")
