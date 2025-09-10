@@ -20,9 +20,6 @@ script = ExtResource("1_j3pn6")
 [node name="Icon" type="Sprite2D" parent="."]
 texture = ExtResource("2_w0grk")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position_smoothing_speed = 10.0
-
 [node name="BlockCollision" type="Area2D" parent="."]
 
 [node name="Hitbox" type="CollisionShape2D" parent="BlockCollision"]

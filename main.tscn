@@ -1,20 +1,23 @@
-[gd_scene load_steps=6 format=3 uid="uid://ie10pcjxs68y"]
+[gd_scene load_steps=7 format=3 uid="uid://ie10pcjxs68y"]
 
 [ext_resource type="PackedScene" uid="uid://c6gyo1jhotsr6" path="res://cube.tscn" id="1_evmdo"]
-[ext_resource type="PackedScene" uid="uid://bldk7tb3x7s8s" path="res://level_editor.tscn" id="1_p0txk"]
 [ext_resource type="PackedScene" uid="uid://c6uigoqrmrx1u" path="res://block.tscn" id="2_7fk1q"]
 [ext_resource type="PackedScene" uid="uid://tdk6p7xgwws5" path="res://spike.tscn" id="3_n3fh7"]
+[ext_resource type="PackedScene" path="res://gui.tscn" id="4_5fmtl"]
 [ext_resource type="PackedScene" uid="uid://cckccprwu6b0j" path="res://yellow_orb.tscn" id="4_e5say"]
+[ext_resource type="Script" path="res://Events.gd" id="5_247dg"]
 
 [node name="Main" type="Node2D"]
 
-[node name="LevelEditor" parent="." node_paths=PackedStringArray("levell", "mainn") instance=ExtResource("1_p0txk")]
-levell = NodePath("../Level")
-mainn = NodePath("..")
-
-[node name="Cube" parent="." node_paths=PackedStringArray("startPos") instance=ExtResource("1_evmdo")]
-position = Vector2(102, 509)
+[node name="Cube" parent="." node_paths=PackedStringArray("startPos", "Events") instance=ExtResource("1_evmdo")]
+position = Vector2(100, 500)
 startPos = NodePath("../StartPos")
+Events = NodePath("../Events")
+
+[node name="Camera2D" type="Camera2D" parent="Cube"]
+
+[node name="GUI" parent="Cube/Camera2D" node_paths=PackedStringArray("Events") instance=ExtResource("4_5fmtl")]
+Events = NodePath("../../../Events")
 
 [node name="StartPos" type="Node2D" parent="."]
 position = Vector2(96, 192)
@@ -167,3 +170,6 @@ position = Vector2(864, 240)
 
 [node name="yellow_orb6" parent="Level" instance=ExtResource("4_e5say")]
 position = Vector2(1056, 240)
+
+[node name="Events" type="Node" parent="."]
+script = ExtResource("5_247dg")
