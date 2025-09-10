@@ -14,7 +14,6 @@ size = Vector2(60, 200)
 [node name="Spike" type="StaticBody2D" groups=["Spike"]]
 scale = Vector2(0.1, 0.1)
 collision_layer = 2
-metadata/Id = "spike"
 
 [node name="Icon" type="Polygon2D" parent="."]
 texture = SubResource("GradientTexture2D_6aydx")
@@ -22,5 +21,4 @@ polygon = PackedVector2Array(-240, 240, 2.08165e-12, -240, 240, 240)
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(0, 40)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_vjjya")
