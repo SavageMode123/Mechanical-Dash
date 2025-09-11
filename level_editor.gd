@@ -27,6 +27,7 @@ func convertToLevelCode(level: Node2D):
 	var levelCode: String = ""
 
 	for child in level.get_children():
+		print(child.name)
 		var id: String = child.get_meta("Id")
 
 		if id not in levelData:
@@ -72,8 +73,6 @@ func placeDown(level: Node2D, id: String, placePos: Vector2):
 			return
 			
 	instance.position = closestPos
-
-	
 
 	level.add_child(instance)
 

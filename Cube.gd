@@ -33,7 +33,6 @@ func reset():
 
 	Events.endGame.emit()
 
-
 func verifyJumpRequirements():
 	var spaceState = get_world_2d().direct_space_state
 
@@ -80,7 +79,6 @@ func _physics_process(delta: float) -> void:
 			if Input.is_action_just_pressed("Jump") and not orb.is_in_group("OrbUsed"):
 				orb.add_to_group("OrbUsed")
 				velocity.y = -JUMP_VELOCITY
-				print("Hello")
 
 	# Handle Icon Rotation
 	if !is_on_floor():

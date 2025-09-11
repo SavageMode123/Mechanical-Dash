@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dt4rv1c1hhey5"]
+[gd_scene load_steps=3 format=3 uid="uid://idtjwc04q4d0"]
 
-[ext_resource type="Texture2D" uid="uid://o3vw5q3cueyi" path="res://Images/yellow_pad.png" id="1_67aap"]
+[ext_resource type="Texture2D" path="res://Images/yellow_pad.png" id="1_67aap"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cnllr"]
 size = Vector2(500, 300)
@@ -8,6 +8,7 @@ size = Vector2(500, 300)
 [node name="YellowPad" type="StaticBody2D" groups=["YellowPad"]]
 scale = Vector2(0.1, 0.1)
 collision_layer = 2
+metadata/Id = "yellow_pad"
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(0, 120)
