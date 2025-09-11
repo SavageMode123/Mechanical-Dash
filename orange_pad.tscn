@@ -5,7 +5,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cnllr"]
 size = Vector2(500, 300)
 
-[node name="OrangePad" type="StaticBody2D" groups=["OrangePad"]]
+[node name="OrangePad" type="StaticBody2D" groups=["Orange", "Pad"]]
 scale = Vector2(0.1, 0.1)
 collision_layer = 2
 metadata/Id = "orange_pad"

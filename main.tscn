@@ -173,16 +173,22 @@ position = Vector2(864, 240)
 position = Vector2(1056, 240)
 
 [node name="YellowPad" parent="Level" instance=ExtResource("6_0cv7q")]
-position = Vector2(1488, 431)
+position = Vector2(1535, 432)
 
 [node name="Block31" parent="Level" instance=ExtResource("2_7fk1q")]
-position = Vector2(1488, 528)
+position = Vector2(1535, 529)
 
 [node name="Block32" parent="Level" instance=ExtResource("2_7fk1q")]
-position = Vector2(1488, 480)
+position = Vector2(1535, 481)
 
 [node name="OrangePad" parent="Level" instance=ExtResource("7_pxeby")]
 position = Vector2(1216, 527)
+
+[node name="Block33" parent="Level" instance=ExtResource("2_7fk1q")]
+position = Vector2(1536, 576)
+
+[node name="yellow_orb7" parent="Level" instance=ExtResource("4_e5say")]
+position = Vector2(1766, 195)
 
 [node name="Events" type="Node" parent="."]
 script = ExtResource("5_247dg")

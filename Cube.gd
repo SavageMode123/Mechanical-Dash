@@ -10,17 +10,17 @@ var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity") * 3
 # States
 var gameStarted: bool = false
 var inJump: bool = false
+var inAir: bool = false
+
 var notOnFloorSince: float = 0.0
+var timeSinceLastJump: float = 0.0
+
+var overlappingOrbs: Array[Node2D] = []
+var overlappingPads: Array[Node2D] = []
 
 # Nodes
 @export var Events: Node
 @onready var icon: Sprite2D = $"Icon"
-
-var inAir: bool = false
-
-var timeSinceLastJump: float = 0.0
-
-var overlappingOrbs: Array[Node2D] = []
 
 # Reset player
 func reset():
@@ -28,10 +28,17 @@ func reset():
 	velocity.y = 0
 	position = startPos.position
 
-	notOnFloorSince = 1.0
 	inJump = false
+	inAir = false
+
+	notOnFloorSince = 0.0
+	timeSinceLastJump = 0.0
 
 	Events.endGame.emit()
+
+	for orb in get_tree().get_nodes_in_group("OrbUsed"):
+		orb.remove_from_group("OrbUsed")
+
 
 func verifyJumpRequirements():
 	var spaceState = get_world_2d().direct_space_state
@@ -75,10 +82,18 @@ func _physics_process(delta: float) -> void:
 	
 	# Handle Orbs
 	for orb in overlappingOrbs:
+		print(orb)
 		if orb.is_in_group("Yellow"):
 			if Input.is_action_just_pressed("Jump") and not orb.is_in_group("OrbUsed"):
 				orb.add_to_group("OrbUsed")
 				velocity.y = -JUMP_VELOCITY
+
+	# Handle Pads
+	for pad in overlappingPads:
+		if pad.is_in_group("Yellow"):
+			velocity.y = -JUMP_VELOCITY
+		elif pad.is_in_group("Orange"):
+			velocity.y = -JUMP_VELOCITY * 1.2
 
 	# Handle Icon Rotation
 	if !is_on_floor():
@@ -108,16 +123,24 @@ func _on_instant_collision_body_entered(body : Node2D) -> void:
 	# Orb collisions
 	if body.is_in_group("Orb"):
 		overlappingOrbs.append(body)
+		print(body)
 
-	if body.is_in_group("YellowPad"):
-		velocity.y = -JUMP_VELOCITY
-		move_and_slide()
+	if body.is_in_group("Pad"):
+		overlappingPads.append(body)
+		print(body)
+		# velocity.y = -JUMP_VELOCITY
+		# move_and_slide()
 
-	if body.is_in_group("OrangePad"):
-		velocity.y = -JUMP_VELOCITY * 1.2
-		move_and_slide()
+	# if body.is_in_group("OrangePad"):
+	# 	overlappingPads.append(body)
+	# 	velocity.y = -JUMP_VELOCITY * 1.2
+	# 	move_and_slide()
 
 func _on_instant_collision_body_exited(body:Node2D) -> void:
 	if body.is_in_group("Orb"):
 		await get_tree().create_timer(0.1).timeout
 		overlappingOrbs.erase(body)
+	
+	if body.is_in_group("Pad"):
+		await get_tree().create_timer(0.1).timeout
+		overlappingPads.erase(body)
