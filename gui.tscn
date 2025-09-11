@@ -30,7 +30,7 @@ offset_bottom = 1608.0
 scale = Vector2(0.262, 0.262)
 alignment = 1
 
-[node name="PlayButton" type="Button" parent="Menu/HBoxContainer"]
+[node name="Play" type="Button" parent="Menu/HBoxContainer"]
 layout_mode = 2
 icon = ExtResource("1_o40cf")
 icon_alignment = 1
@@ -82,5 +82,5 @@ scale = Vector2(0.48, 0.48)
 icon = ExtResource("5_vgxix")
 metadata/Id = "spike"
 
-[connection signal="pressed" from="Menu/HBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="Menu/HBoxContainer/Play" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="Menu/HBoxContainer/Build" to="." method="_on_build_button_pressed"]

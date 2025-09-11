@@ -31,6 +31,8 @@ func reset():
 	notOnFloorSince = 1.0
 	inJump = false
 
+	Events.endGame.emit()
+
 
 func verifyJumpRequirements():
 	var spaceState = get_world_2d().direct_space_state
@@ -44,11 +46,15 @@ func verifyJumpRequirements():
 func _ready() -> void:
 	# Defining Start Game Signal
 	Events.startGame.connect(startGame)
+	Events.endGame.connect(gameEnd)
 	reset() # Reseting Player
 
 # Start Game "Lambda"
 func startGame() -> void:
 		gameStarted = true
+
+func gameEnd() -> void:
+	gameStarted = false
 
 func _physics_process(delta: float) -> void:
 	if not gameStarted:
@@ -74,6 +80,7 @@ func _physics_process(delta: float) -> void:
 			if Input.is_action_just_pressed("Jump") and not orb.is_in_group("OrbUsed"):
 				orb.add_to_group("OrbUsed")
 				velocity.y = -JUMP_VELOCITY
+				print("Hello")
 
 	# Handle Icon Rotation
 	if !is_on_floor():
@@ -103,6 +110,14 @@ func _on_instant_collision_body_entered(body : Node2D) -> void:
 	# Orb collisions
 	if body.is_in_group("Orb"):
 		overlappingOrbs.append(body)
+
+	if body.is_in_group("YellowPad"):
+		velocity.y = -JUMP_VELOCITY
+		move_and_slide()
+
+	if body.is_in_group("OrangePad"):
+		velocity.y = -JUMP_VELOCITY * 1.2
+		move_and_slide()
 
 func _on_instant_collision_body_exited(body:Node2D) -> void:
 	if body.is_in_group("Orb"):

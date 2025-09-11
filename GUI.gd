@@ -10,3 +10,6 @@ func _on_play_button_pressed() -> void:
 func _on_build_button_pressed() -> void:
 	Events.buildMode.emit()
 	menu.visible = false
+
+func gameEnd() -> void:
+	menu.visible = true
