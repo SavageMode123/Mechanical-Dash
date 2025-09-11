@@ -115,6 +115,10 @@ func _on_instant_collision_body_entered(body : Node2D) -> void:
 		velocity.y = -JUMP_VELOCITY
 		move_and_slide()
 
+	if body.is_in_group("OrangePad"):
+		velocity.y = -JUMP_VELOCITY * 1.2
+		move_and_slide()
+
 func _on_instant_collision_body_exited(body:Node2D) -> void:
 	if body.is_in_group("Orb"):
 		await get_tree().create_timer(0.1).timeout

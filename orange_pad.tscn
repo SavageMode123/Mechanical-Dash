@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3y13b2ymxb21"]
+
+[ext_resource type="Texture2D" uid="uid://begehvp37ilt0" path="res://Images/OrangePad.png" id="1_dvp22"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cnllr"]
+size = Vector2(500, 300)
+
+[node name="OrangePad" type="StaticBody2D" groups=["OrangePad"]]
+scale = Vector2(0.1, 0.1)
+collision_layer = 2
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(0, 120)
+shape = SubResource("RectangleShape2D_cnllr")
+
+[node name="Icon" type="Sprite2D" parent="."]
+texture = ExtResource("1_dvp22")
