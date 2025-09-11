@@ -8,6 +8,7 @@ size = Vector2(480, 480)
 [node name="yellow_orb" type="StaticBody2D" groups=["Orb", "Yellow"]]
 scale = Vector2(0.1, 0.1)
 collision_layer = 2
+metadata/Id = "yellow_orb"
 
 [node name="Icon" type="Sprite2D" parent="."]
 scale = Vector2(1.43, 1.43)

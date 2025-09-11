@@ -14,6 +14,7 @@ size = Vector2(480, 480)
 
 [node name="Block" type="StaticBody2D" groups=["Block"]]
 scale = Vector2(0.1, 0.1)
+metadata/Id = "block"
 
 [node name="Icon" type="Sprite2D" parent="."]
 texture = SubResource("GradientTexture2D_ig31n")

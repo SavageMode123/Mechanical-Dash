@@ -1,15 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://c0neqprbf502r"]
+[gd_scene load_steps=7 format=3 uid="uid://c50s05m8udb63"]
 
 [ext_resource type="Texture2D" uid="uid://btukywew2btnt" path="res://Images/PlayButton.png" id="1_o40cf"]
 [ext_resource type="Script" path="res://GUI.gd" id="1_pveag"]
+[ext_resource type="Texture2D" uid="uid://dalqxnak6v7nk" path="res://Images/build.png" id="3_hb1gf"]
+[ext_resource type="Texture2D" uid="uid://dwr0rhbgsmc8l" path="res://Images/block.webp" id="4_ta36j"]
+[ext_resource type="Texture2D" uid="uid://cx31fmaqia46h" path="res://Images/Spike.webp" id="5_vgxix"]
 
-[node name="GUI" type="Control"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6btca"]
+bg_color = Color(0.666667, 0.760784, 0.917647, 1)
+
+[node name="UI" type="Control"]
 layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_pveag")
@@ -20,12 +24,10 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Menu"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 0
+offset_right = 2812.0
+offset_bottom = 1608.0
+scale = Vector2(0.262, 0.262)
 alignment = 1
 
 [node name="PlayButton" type="Button" parent="Menu/HBoxContainer"]
@@ -33,4 +35,52 @@ layout_mode = 2
 icon = ExtResource("1_o40cf")
 icon_alignment = 1
 
+[node name="Build" type="Button" parent="Menu/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_6btca")
+text = "
+"
+icon = ExtResource("3_hb1gf")
+icon_alignment = 1
+
+[node name="Build" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Blocks" type="HScrollBar" parent="Build"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -258.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.498, 0.498)
+mouse_filter = 2
+
+[node name="Block" type="Button" parent="Build/Blocks"]
+layout_mode = 2
+offset_left = 26.1044
+offset_top = 62.249
+offset_right = 156.104
+offset_bottom = 192.249
+icon = ExtResource("4_ta36j")
+metadata/Id = "block"
+
+[node name="Spike" type="Button" parent="Build/Blocks"]
+layout_mode = 2
+offset_left = 170.683
+offset_top = 62.249
+offset_right = 428.683
+offset_bottom = 320.249
+scale = Vector2(0.48, 0.48)
+icon = ExtResource("5_vgxix")
+metadata/Id = "spike"
+
 [connection signal="pressed" from="Menu/HBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="Menu/HBoxContainer/Build" to="." method="_on_build_button_pressed"]
