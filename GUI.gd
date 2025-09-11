@@ -3,6 +3,9 @@ extends Control
 @export var Events: Node
 @onready var menu: Control = $"Menu"
 
+func _ready() -> void:
+	Events.endGame.connect(gameEnd)
+
 func _on_play_button_pressed() -> void:
 	Events.startGame.emit()
 	menu.visible = false

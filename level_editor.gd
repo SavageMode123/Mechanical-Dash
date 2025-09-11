@@ -4,7 +4,8 @@ extends Node2D
 @export var levell: Node2D
 @export var mainn: Node2D
 
-@onready var buildUI: Control = mainn.get_node("Canvas").get_node("UI").get_node("Build")
+@export var Gui: Control
+@onready var buildUI: Control = Gui.get_node("Build")
 @onready var blocksUI: Control = buildUI.get_node("Blocks")
 
 @export var Events: Node

@@ -12,15 +12,11 @@
 
 [node name="Main" type="Node2D"]
 
-[node name="LevelEditor" parent="." node_paths=PackedStringArray("levell", "mainn", "Events") instance=ExtResource("1_p0txk")]
+[node name="LevelEditor" parent="." node_paths=PackedStringArray("levell", "mainn", "Gui", "Events") instance=ExtResource("1_p0txk")]
 levell = NodePath("../Level")
 mainn = NodePath("..")
+Gui = NodePath("../Cube/Camera/GUI")
 Events = NodePath("../Events")
-
-[node name="Canvas" type="CanvasLayer" parent="."]
-
-[node name="UI" parent="Canvas" node_paths=PackedStringArray("Events") instance=ExtResource("4_5fmtl")]
-Events = NodePath("../../Events")
 
 [node name="Cube" parent="." node_paths=PackedStringArray("startPos", "Events") instance=ExtResource("1_evmdo")]
 position = Vector2(100, 500)
@@ -28,6 +24,9 @@ startPos = NodePath("../StartPos")
 Events = NodePath("../Events")
 
 [node name="Camera" type="Camera2D" parent="Cube"]
+
+[node name="GUI" parent="Cube/Camera" node_paths=PackedStringArray("Events") instance=ExtResource("4_5fmtl")]
+Events = NodePath("../../../Events")
 
 [node name="StartPos" type="Node2D" parent="."]
 position = Vector2(96, 192)

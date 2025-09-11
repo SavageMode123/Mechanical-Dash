@@ -3,17 +3,17 @@
 [ext_resource type="Texture2D" uid="uid://btukywew2btnt" path="res://Images/PlayButton.png" id="1_o40cf"]
 [ext_resource type="Script" path="res://GUI.gd" id="1_pveag"]
 [ext_resource type="Texture2D" uid="uid://dalqxnak6v7nk" path="res://Images/build.png" id="3_hb1gf"]
+[ext_resource type="Texture2D" uid="uid://clmhxgnhun4m" path="res://Images/Menu.png" id="3_ys65u"]
 [ext_resource type="Texture2D" uid="uid://dwr0rhbgsmc8l" path="res://Images/block.webp" id="4_ta36j"]
 [ext_resource type="Texture2D" uid="uid://cx31fmaqia46h" path="res://Images/Spike.webp" id="5_vgxix"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6btca"]
-bg_color = Color(0.666667, 0.760784, 0.917647, 1)
-
-[node name="UI" type="Control"]
+[node name="GUI" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_pveag")
@@ -23,23 +23,36 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Menu"]
-layout_mode = 0
-offset_right = 2812.0
-offset_bottom = 1608.0
-scale = Vector2(0.262, 0.262)
+[node name="TextureRect" type="TextureRect" parent="Menu"]
+layout_mode = 2
+offset_left = -2174.0
+offset_top = -2298.0
+offset_right = 3826.0
+offset_bottom = 2338.0
+texture = ExtResource("3_ys65u")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Menu/TextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -804.0
+offset_top = -804.0
+offset_right = 804.0
+offset_bottom = 804.0
+grow_horizontal = 2
+grow_vertical = 2
 alignment = 1
 
-[node name="Play" type="Button" parent="Menu/HBoxContainer"]
+[node name="PlayButton" type="Button" parent="Menu/TextureRect/HBoxContainer"]
 layout_mode = 2
 icon = ExtResource("1_o40cf")
 icon_alignment = 1
 
-[node name="Build" type="Button" parent="Menu/HBoxContainer"]
+[node name="BuildButton" type="Button" parent="Menu/TextureRect/HBoxContainer"]
 layout_mode = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_6btca")
-text = "
-"
 icon = ExtResource("3_hb1gf")
 icon_alignment = 1
 
@@ -68,19 +81,20 @@ layout_mode = 2
 offset_left = 26.1044
 offset_top = 62.249
 offset_right = 156.104
-offset_bottom = 192.249
+offset_bottom = 320.249
+scale = Vector2(10, 10)
 icon = ExtResource("4_ta36j")
 metadata/Id = "block"
 
 [node name="Spike" type="Button" parent="Build/Blocks"]
 layout_mode = 2
-offset_left = 170.683
-offset_top = 62.249
-offset_right = 428.683
-offset_bottom = 320.249
-scale = Vector2(0.48, 0.48)
+offset_left = 1423.69
+offset_top = 716.868
+offset_right = 1681.69
+offset_bottom = 974.868
+scale = Vector2(5, 5)
 icon = ExtResource("5_vgxix")
 metadata/Id = "spike"
 
-[connection signal="pressed" from="Menu/HBoxContainer/Play" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="Menu/HBoxContainer/Build" to="." method="_on_build_button_pressed"]
+[connection signal="pressed" from="Menu/TextureRect/HBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="Menu/TextureRect/HBoxContainer/BuildButton" to="." method="_on_build_button_pressed"]
