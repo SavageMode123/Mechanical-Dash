@@ -9,41 +9,39 @@
 
 [node name="GUI" type="Control"]
 layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_pveag")
 
 [node name="Menu" type="Control" parent="."]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="TextureRect" type="TextureRect" parent="Menu"]
-layout_mode = 2
-offset_left = -2174.0
-offset_top = -2298.0
-offset_right = 3826.0
-offset_bottom = 2338.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("3_ys65u")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Menu/TextureRect"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -804.0
-offset_top = -804.0
-offset_right = 804.0
-offset_bottom = 804.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = 436.0
+offset_top = 151.0
+offset_right = 3256.0
+offset_bottom = 1759.0
+scale = Vector2(0.1, 0.1)
 alignment = 1
 
 [node name="PlayButton" type="Button" parent="Menu/TextureRect/HBoxContainer"]
@@ -70,7 +68,10 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -258.0
+offset_left = 308.0
+offset_top = -283.0
+offset_right = 308.0
+offset_bottom = -24.9999
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(0.498, 0.498)
@@ -78,21 +79,20 @@ mouse_filter = 2
 
 [node name="Block" type="Button" parent="Build/Blocks"]
 layout_mode = 2
-offset_left = 26.1044
-offset_top = 62.249
-offset_right = 156.104
-offset_bottom = 320.249
-scale = Vector2(10, 10)
+offset_left = 58.2329
+offset_top = 76.3052
+offset_right = 188.233
+offset_bottom = 206.305
 icon = ExtResource("4_ta36j")
 metadata/Id = "block"
 
 [node name="Spike" type="Button" parent="Build/Blocks"]
 layout_mode = 2
-offset_left = 1423.69
-offset_top = 716.868
-offset_right = 1681.69
-offset_bottom = 974.868
-scale = Vector2(5, 5)
+offset_left = 190.763
+offset_top = 80.3213
+offset_right = 448.763
+offset_bottom = 338.321
+scale = Vector2(0.472, 0.472)
 icon = ExtResource("5_vgxix")
 metadata/Id = "spike"
 
