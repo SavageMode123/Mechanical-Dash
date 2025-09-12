@@ -12,9 +12,8 @@
 
 [node name="Main" type="Node2D"]
 
-[node name="LevelEditor" parent="." node_paths=PackedStringArray("levell", "mainn", "Gui", "Events") instance=ExtResource("1_p0txk")]
-levell = NodePath("../Level")
-mainn = NodePath("..")
+[node name="LevelEditor" parent="." node_paths=PackedStringArray("main", "Gui", "Events") instance=ExtResource("1_p0txk")]
+main = NodePath("..")
 Gui = NodePath("../CanvasLayer/GUI")
 Events = NodePath("../Events")
 
@@ -192,6 +191,4 @@ script = ExtResource("5_247dg")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="GUI" parent="CanvasLayer" node_paths=PackedStringArray("Events") instance=ExtResource("4_5fmtl")]
-offset_left = -96.0
-offset_right = -96.0
 Events = NodePath("../../Events")
