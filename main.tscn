@@ -9,7 +9,7 @@
 [ext_resource type="Script" path="res://Events.gd" id="5_247dg"]
 [ext_resource type="PackedScene" uid="uid://idtjwc04q4d0" path="res://yellow_pad.tscn" id="6_0cv7q"]
 [ext_resource type="PackedScene" uid="uid://d05j0e5dj338n" path="res://orange_pad.tscn" id="7_pxeby"]
-[ext_resource type="PackedScene" uid="uid://ss4rpc2ydf2w" path="res://reverse_portal.tscn" id="9_a0d8r"]
+[ext_resource type="PackedScene" path="res://reverse_portal.tscn" id="9_a0d8r"]
 
 [node name="Main" type="Node2D"]
 

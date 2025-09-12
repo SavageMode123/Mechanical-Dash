@@ -91,7 +91,6 @@ func loadLevelIntoEditor():
 		child.queue_free()
 
 	loadLevelCode(levelCode, self)
-	print(get_children())
 	
 func loadLevelIntoGame():
 	var levelCode: String = DisplayServer.clipboard_get()

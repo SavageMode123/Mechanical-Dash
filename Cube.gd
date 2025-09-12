@@ -26,7 +26,7 @@ var portal: StaticBody2D
 
 # Reset player
 func reset():
-	velocity.x = SPEED
+	velocity.x = 0
 	velocity.y = 0
 	position = startPos.position
 
@@ -44,7 +44,6 @@ func reset():
 	overlappingOrbs = []
 	overlappingPads = []
 	portal = null
-
 
 func verifyJumpRequirements():
 	var spaceState = get_world_2d().direct_space_state
@@ -68,7 +67,7 @@ func _ready() -> void:
 
 # Start Game "Lambda"
 func startGame() -> void:
-		gameStarted = true
+	gameStarted = true
 
 func gameEnd() -> void:
 	gameStarted = false
@@ -76,6 +75,8 @@ func gameEnd() -> void:
 func _physics_process(delta: float) -> void:
 	if not gameStarted:
 		return
+	
+	velocity.x = SPEED
 
 	print(is_on_ceiling())
 
@@ -128,19 +129,12 @@ func _physics_process(delta: float) -> void:
 # Cube kill collision
 func _on_block_collision_body_entered(body : Node2D) -> void:
 	if body.is_in_group("Block"):
-		velocity.x = 0
-		velocity.y = 0
-		position.x -= 5
-		await get_tree().create_timer(1).timeout
 		reset()
 
 
 func _on_instant_collision_body_entered(body : Node2D) -> void:
 	# Instant Kill collision
 	if body.is_in_group("Spike"):
-		velocity.x = 0
-		velocity.y = 0
-		await get_tree().create_timer(1).timeout
 		reset()
 
 	# Orb collisions
