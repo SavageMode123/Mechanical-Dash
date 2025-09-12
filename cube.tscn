@@ -15,6 +15,8 @@ size = Vector2(480, 480)
 [node name="Cube" type="CharacterBody2D"]
 position = Vector2(102, 515)
 scale = Vector2(0.1, 0.1)
+slide_on_ceiling = false
+floor_constant_speed = true
 script = ExtResource("1_j3pn6")
 
 [node name="Icon" type="Sprite2D" parent="."]

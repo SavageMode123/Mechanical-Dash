@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://ss4rpc2ydf2w"]
+
+[ext_resource type="Texture2D" uid="uid://cx54wcfees8kd" path="res://Images/ReversePortal.webp" id="1_8eqst"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mn5ve"]
+size = Vector2(1000, 1500)
+
+[node name="ReversePortal" type="StaticBody2D" groups=["Portal", "Reverse"]]
+scale = Vector2(0.1, 0.1)
+collision_layer = 2
+metadata/Id = "reverse_portal"
+
+[node name="Icon" type="Sprite2D" parent="."]
+scale = Vector2(5, 5)
+texture = ExtResource("1_8eqst")
+
+[node name="Hitbox" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_mn5ve")
