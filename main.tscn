@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ie10pcjxs68y"]
+[gd_scene load_steps=11 format=3 uid="uid://ie10pcjxs68y"]
 
 [ext_resource type="PackedScene" uid="uid://c6gyo1jhotsr6" path="res://cube.tscn" id="1_evmdo"]
 [ext_resource type="PackedScene" uid="uid://bldk7tb3x7s8s" path="res://level_editor.tscn" id="1_p0txk"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://Events.gd" id="5_247dg"]
 [ext_resource type="PackedScene" uid="uid://idtjwc04q4d0" path="res://yellow_pad.tscn" id="6_0cv7q"]
 [ext_resource type="PackedScene" uid="uid://d05j0e5dj338n" path="res://orange_pad.tscn" id="7_pxeby"]
+[ext_resource type="PackedScene" uid="uid://ss4rpc2ydf2w" path="res://reverse_portal.tscn" id="9_a0d8r"]
 
 [node name="Main" type="Node2D"]
 
@@ -123,6 +124,15 @@ position = Vector2(1440, 576)
 [node name="Block30" parent="Level" instance=ExtResource("2_7fk1q")]
 position = Vector2(1488, 576)
 
+[node name="Block31" parent="Level" instance=ExtResource("2_7fk1q")]
+position = Vector2(1535, 529)
+
+[node name="Block32" parent="Level" instance=ExtResource("2_7fk1q")]
+position = Vector2(1535, 481)
+
+[node name="Block33" parent="Level" instance=ExtResource("2_7fk1q")]
+position = Vector2(1536, 576)
+
 [node name="Spike" parent="Level" instance=ExtResource("3_n3fh7")]
 position = Vector2(288, 528)
 
@@ -169,25 +179,52 @@ position = Vector2(672, 240)
 position = Vector2(864, 240)
 
 [node name="yellow_orb6" parent="Level" instance=ExtResource("4_e5say")]
-position = Vector2(1056, 240)
+position = Vector2(1151, 245)
+
+[node name="yellow_orb7" parent="Level" instance=ExtResource("4_e5say")]
+position = Vector2(1766, 195)
 
 [node name="YellowPad" parent="Level" instance=ExtResource("6_0cv7q")]
 position = Vector2(1535, 432)
 
-[node name="Block31" parent="Level" instance=ExtResource("2_7fk1q")]
-position = Vector2(1535, 529)
-
-[node name="Block32" parent="Level" instance=ExtResource("2_7fk1q")]
-position = Vector2(1535, 481)
-
 [node name="OrangePad" parent="Level" instance=ExtResource("7_pxeby")]
 position = Vector2(1216, 527)
 
-[node name="Block33" parent="Level" instance=ExtResource("2_7fk1q")]
-position = Vector2(1536, 576)
+[node name="ReversePortal" parent="Level" instance=ExtResource("9_a0d8r")]
+position = Vector2(2047, 194)
 
-[node name="yellow_orb7" parent="Level" instance=ExtResource("4_e5say")]
-position = Vector2(1766, 195)
+[node name="Block34" parent="Level" instance=ExtResource("2_7fk1q")]
+position = Vector2(2015, 28)
+
+[node name="Block35" parent="Level" instance=ExtResource("2_7fk1q")]
+position = Vector2(2063, 28)
+
+[node name="Block36" parent="Level" instance=ExtResource("2_7fk1q")]
+position = Vector2(2111, 28)
+
+[node name="Block37" parent="Level" instance=ExtResource("2_7fk1q")]
+position = Vector2(2159, 28)
+
+[node name="Block38" parent="Level" instance=ExtResource("2_7fk1q")]
+position = Vector2(2207, 28)
+
+[node name="Block39" parent="Level" instance=ExtResource("2_7fk1q")]
+position = Vector2(2255, 28)
+
+[node name="Block40" parent="Level" instance=ExtResource("2_7fk1q")]
+position = Vector2(2303, 28)
+
+[node name="Block41" parent="Level" instance=ExtResource("2_7fk1q")]
+position = Vector2(2351, 28)
+
+[node name="Block42" parent="Level" instance=ExtResource("2_7fk1q")]
+position = Vector2(2399, 28)
+
+[node name="Block43" parent="Level" instance=ExtResource("2_7fk1q")]
+position = Vector2(2447, 28)
+
+[node name="Block44" parent="Level" instance=ExtResource("2_7fk1q")]
+position = Vector2(2495, 28)
 
 [node name="Events" type="Node" parent="."]
 script = ExtResource("5_247dg")

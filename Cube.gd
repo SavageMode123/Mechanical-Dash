@@ -10,13 +10,15 @@ var gravity: int = ProjectSettings.get_setting("physics/2d/default_gravity") * 3
 # States
 var gameStarted: bool = false
 var inJump: bool = false
-var inAir: bool = false
+var reverseGravity: bool = false
 
 var notOnFloorSince: float = 0.0
 var timeSinceLastJump: float = 0.0
 
 var overlappingOrbs: Array[Node2D] = []
 var overlappingPads: Array[Node2D] = []
+
+var portal: StaticBody2D
 
 # Nodes
 @export var Events: Node
@@ -29,7 +31,7 @@ func reset():
 	position = startPos.position
 
 	inJump = false
-	inAir = false
+	reverseGravity = false
 
 	notOnFloorSince = 0.0
 	timeSinceLastJump = 0.0
@@ -39,6 +41,10 @@ func reset():
 	for orb in get_tree().get_nodes_in_group("OrbUsed"):
 		orb.remove_from_group("OrbUsed")
 
+	overlappingOrbs = []
+	overlappingPads = []
+	portal = null
+
 
 func verifyJumpRequirements():
 	var spaceState = get_world_2d().direct_space_state
@@ -46,8 +52,13 @@ func verifyJumpRequirements():
 	var closeToFloorQuery = PhysicsRayQueryParameters2D.create(position + Vector2(0, 24), position + Vector2(0, 25))
 	closeToFloorQuery.exclude = [self]
 
+	var closeToCeilingQuery = PhysicsRayQueryParameters2D.create(position - Vector2(0, 24), position - Vector2(0, 25))
+	closeToCeilingQuery.exclude = [self]
+
 	var closeToFloor: bool = true if spaceState.intersect_ray(closeToFloorQuery) else false
-	return !inJump and (is_on_floor() or notOnFloorSince < 0.2 or closeToFloor == true)
+	var closeToCeiling: bool = true if spaceState.intersect_ray(closeToCeilingQuery) else false
+	
+	return not inJump and ((is_on_floor() or is_on_ceiling()) or notOnFloorSince < 0.2 or closeToFloor or closeToCeiling)
 
 func _ready() -> void:
 	# Defining Start Game Signal
@@ -66,41 +77,46 @@ func _physics_process(delta: float) -> void:
 	if not gameStarted:
 		return
 
-	# Add gravity.
-	if not is_on_floor():
-		velocity.y += gravity * delta
+	print(is_on_ceiling())
 
-	
+	# Add gravity.
+	if not is_on_floor() or not is_on_ceiling():
+		velocity.y += gravity * delta * (-1 if reverseGravity else 1)
+
 	# Handle Jump
 	if Input.is_action_pressed("Jump") and verifyJumpRequirements():
-		velocity.y = -JUMP_VELOCITY
+		velocity.y = -JUMP_VELOCITY * (-1 if reverseGravity else 1) 
 		inJump = true;
 	
 	# Reseting In Jump State
-	if (inJump and is_on_floor()):
+	if (inJump and (is_on_floor() or is_on_ceiling())):
 		inJump = false
 	
 	# Handle Orbs
 	for orb in overlappingOrbs:
-		print(orb)
 		if orb.is_in_group("Yellow"):
 			if Input.is_action_just_pressed("Jump") and not orb.is_in_group("OrbUsed"):
 				orb.add_to_group("OrbUsed")
-				velocity.y = -JUMP_VELOCITY
+				velocity.y = -JUMP_VELOCITY * (-1 if reverseGravity else 1)
+				inJump = true
 
 	# Handle Pads
 	for pad in overlappingPads:
 		if pad.is_in_group("Yellow"):
-			velocity.y = -JUMP_VELOCITY
+			velocity.y = -JUMP_VELOCITY * (-1 if reverseGravity else 1) 
 		elif pad.is_in_group("Orange"):
-			velocity.y = -JUMP_VELOCITY * 1.2
+			velocity.y = -JUMP_VELOCITY * (-1 if reverseGravity else 1) * 1.2
+
+	# Handle Portals
+	# if portal and portal.is_in_group("Reverse"):
+	# 	reverseGravity = true
 
 	# Handle Icon Rotation
-	if !is_on_floor():
+	if not is_on_floor() and not is_on_ceiling():
 		icon.rotation_degrees += 250 * delta
 		notOnFloorSince += delta
 
-	elif is_on_floor():
+	elif is_on_floor() or is_on_ceiling():
 		icon.rotation_degrees = lerp(icon.rotation_degrees, round(icon.rotation_degrees / 90) * 90, 0.2)
 		notOnFloorSince = 0.0
 
@@ -112,29 +128,32 @@ func _physics_process(delta: float) -> void:
 # Cube kill collision
 func _on_block_collision_body_entered(body : Node2D) -> void:
 	if body.is_in_group("Block"):
+		velocity.x = 0
+		velocity.y = 0
+		position.x -= 5
+		await get_tree().create_timer(1).timeout
 		reset()
 
 
 func _on_instant_collision_body_entered(body : Node2D) -> void:
 	# Instant Kill collision
 	if body.is_in_group("Spike"):
+		velocity.x = 0
+		velocity.y = 0
+		await get_tree().create_timer(1).timeout
 		reset()
 
 	# Orb collisions
-	if body.is_in_group("Orb"):
+	if body.is_in_group("Orb") and body not in overlappingOrbs:
 		overlappingOrbs.append(body)
-		print(body)
 
-	if body.is_in_group("Pad"):
+	if body.is_in_group("Pad") and body not in overlappingPads:
 		overlappingPads.append(body)
-		print(body)
-		# velocity.y = -JUMP_VELOCITY
-		# move_and_slide()
 
-	# if body.is_in_group("OrangePad"):
-	# 	overlappingPads.append(body)
-	# 	velocity.y = -JUMP_VELOCITY * 1.2
-	# 	move_and_slide()
+	if body.is_in_group("Portal") and body != portal:
+		portal = body
+		if body.is_in_group("Reverse"):
+			reverseGravity = true
 
 func _on_instant_collision_body_exited(body:Node2D) -> void:
 	if body.is_in_group("Orb"):
