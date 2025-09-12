@@ -229,6 +229,4 @@ script = ExtResource("5_247dg")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="GUI" parent="CanvasLayer" node_paths=PackedStringArray("Events") instance=ExtResource("4_5fmtl")]
-offset_left = -96.0
-offset_right = -96.0
 Events = NodePath("../../Events")
